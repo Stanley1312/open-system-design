@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sync vs Async Export</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">System design lab · 01</p>
+        <h1>Large file export,<br><span>two different experiences.</span></h1>
+        <p class="intro">
+          Compare a request that stays open until the work is done with a job
+          that can be checked independently.
+        </p>
+      </header>
+
+      <section class="comparison" aria-label="Export approaches">
+        <article class="export-card sync-card">
+          <div class="card-top">
+            <span class="number">01</span>
+            <span class="method">GET /sync-export</span>
+          </div>
+          <div>
+            <p class="card-label">Blocking request</p>
+            <h2>Sync export</h2>
+            <p class="description">
+              The browser keeps one HTTP request open while the server simulates
+              a database query.
+            </p>
+          </div>
+
+          <div class="flow flow-sync" aria-hidden="true">
+            <span>Client</span><i></i><span>API + DB</span>
+          </div>
+
+          <label class="duration-control sync-duration-control" for="sync-duration">
+            <span>
+              Simulation time
+              <small>Sent as a query parameter with the request</small>
+            </span>
+            <span class="duration-input">
+              <input
+                id="sync-duration"
+                type="number"
+                min="1"
+                max="120"
+                step="1"
+                value="{{ sync_duration }}"
+              >
+              <span>sec</span>
+            </span>
+          </label>
+
+          <div class="action-area">
+            <button class="download-button sync-button" id="sync-start">
+              <span>Download report</span>
+              <span class="arrow">↓</span>
+            </button>
+            <div class="timer-block" aria-live="polite">
+              <span class="timer" id="sync-timer">00:00</span>
+              <span class="timer-label">request time</span>
+            </div>
+          </div>
+          <p class="status-message" id="sync-status">Choose a duration, then download</p>
+        </article>
+
+        <article class="export-card async-card">
+          <div class="card-top">
+            <span class="number">02</span>
+            <span class="method">POST /async-export</span>
+          </div>
+          <div>
+            <p class="card-label">Background job</p>
+            <h2>Async export</h2>
+            <p class="description">
+              The API responds immediately. The client polls job status while a
+              simulated worker prepares the file.
+            </p>
+          </div>
+
+          <div class="flow" aria-hidden="true">
+            <span>Client</span><i></i><span>API</span><i></i><span>Worker</span>
+          </div>
+
+          <label class="duration-control" for="async-duration">
+            <span>
+              Simulation time
+              <small>Sent by the client when creating a job</small>
+            </span>
+            <span class="duration-input">
+              <input
+                id="async-duration"
+                type="number"
+                min="1"
+                max="120"
+                step="1"
+                value="{{ async_duration }}"
+              >
+              <span>sec</span>
+            </span>
+          </label>
+
+          <button class="download-button async-button" id="async-start">
+            <span>Start export job</span>
+            <span class="arrow">→</span>
+          </button>
+
+          <div class="progress-section">
+            <div class="progress-meta">
+              <span id="async-status">Ready to start</span>
+              <strong id="async-percent">0%</strong>
+            </div>
+            <div
+              class="progress-track"
+              role="progressbar"
+              aria-label="Async export progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+              id="async-progress"
+            >
+              <div class="progress-fill" id="async-progress-fill"></div>
+            </div>
+            <div class="polling-note">
+              <span class="pulse-dot"></span>
+              <span id="polling-note">Choose a duration, then start the job</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <span>V1 · In-memory simulation</span>
+        <span>Flask · Polling · Blob download</span>
+      </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+  </body>
+</html>
