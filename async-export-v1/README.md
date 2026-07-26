@@ -4,6 +4,14 @@ Version 1 compares a blocking synchronous file export with a polling-based
 asynchronous export. Database queries and worker execution are intentionally
 simulated with elapsed time so the HTTP interaction is easy to observe.
 
+## Choose your path
+
+- [Try the challenge](CHALLENGE.md) — requirements, milestones, hints, and
+  self-review questions without implementation code.
+- [Read the design note](async_large_file_export_api_design_en.md) — the
+  production-oriented architecture behind this simplified case.
+- Explore the remaining files for the V1 reference solution.
+
 ## Run locally
 
 ```bash
