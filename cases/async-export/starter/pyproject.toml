@@ -1,0 +1,9 @@
+[project]
+name = "async-export-v1-starter"
+version = "0.1.0"
+description = "Starter project for the Async Export V1 system design challenge"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "flask>=3.1.3",
+]
