@@ -13,6 +13,8 @@ scale and reliability requirements increase.
 |---|---|---|
 | [Async Export V1](cases/async-export/) | Long-running requests, job APIs, polling, progress, file download | Available |
 
+See [CASES.md](CASES.md) for the learning roadmap and future case backlog.
+
 ## How to use this repository
 
 1. Open a case and read its `README.md`.
