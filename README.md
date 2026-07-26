@@ -11,7 +11,7 @@ scale and reliability requirements increase.
 
 | Case | Concepts | Status |
 |---|---|---|
-| [Async Export V1](async-export-v1/) | Long-running requests, job APIs, polling, progress, file download | Available |
+| [Async Export V1](cases/async-export/) | Long-running requests, job APIs, polling, progress, file download | Available |
 
 ## How to use this repository
 

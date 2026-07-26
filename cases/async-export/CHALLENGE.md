@@ -18,6 +18,14 @@ storage yet.
 - How to download a result after processing completes.
 - How HTTP methods and status codes describe an asynchronous workflow.
 
+## Getting started
+
+```bash
+cd starter
+uv sync
+uv run python main.py
+```
+
 ## Requirements
 
 ### 1. Synchronous export

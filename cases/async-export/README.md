@@ -1,4 +1,4 @@
-# Async Export — System Design Lab
+# Async Export V1 — System Design Lab
 
 Version 1 compares a blocking synchronous file export with a polling-based
 asynchronous export. Database queries and worker execution are intentionally
@@ -6,15 +6,28 @@ simulated with elapsed time so the HTTP interaction is easy to observe.
 
 ## Choose your path
 
-- [Try the challenge](CHALLENGE.md) — requirements, milestones, hints, and
-  self-review questions without implementation code.
-- [Read the design note](async_large_file_export_api_design_en.md) — the
+- [Try the challenge](CHALLENGE.md), then work inside [`starter/`](starter/).
+- Compare your implementation with the reference code in
+  [`solution/`](solution/).
+- [Read the design note](docs/async_large_file_export_api_design_en.md) for the
   production-oriented architecture behind this simplified case.
-- Explore the remaining files for the V1 reference solution.
 
-## Run locally
+## Repository layout
+
+```text
+async-export/
+├── README.md       # Case overview
+├── CHALLENGE.md    # Requirements and hints
+├── starter/        # Minimal runnable scaffold
+├── solution/       # Reference implementation
+└── docs/           # Design notes
+```
+
+## Run the reference solution
 
 ```bash
+cd solution
+uv sync
 uv run python main.py
 ```
 
