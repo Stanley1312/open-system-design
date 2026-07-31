@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Async Export — Start Here</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">System Design Lab · Async Export V1</p>
+        <h1>Start with the problem,<br>not the architecture.</h1>
+        <p class="intro">
+          Large exports take time. First, experience what happens when all of
+          that work is performed inside one HTTP request.
+        </p>
+      </header>
+
+      <section class="lab" aria-labelledby="experiment-title">
+        <div class="step-heading">
+          <span>01</span>
+          <div>
+            <p>Run this experiment</p>
+            <h2 id="experiment-title">Keep the request open</h2>
+          </div>
+        </div>
+
+        <div class="explanation">
+          <p>
+            Choose a duration and download the report. The browser must wait
+            until the server finishes before it receives the file.
+          </p>
+          <div class="flow" aria-label="Client waits for the API">
+            <span>Browser</span><i></i><span>API does all work</span><i></i><span>File</span>
+          </div>
+        </div>
+
+        <form id="sync-form" class="experiment">
+          <label for="duration">
+            Simulated work
+            <small>Try 5 seconds first</small>
+          </label>
+          <div class="controls">
+            <div class="duration-input">
+              <input
+                id="duration"
+                name="duration"
+                type="number"
+                min="1"
+                max="120"
+                value="{{ default_duration }}"
+              >
+              <span>seconds</span>
+            </div>
+            <button type="submit">Download report <span>↓</span></button>
+          </div>
+        </form>
+
+        <div class="observation" aria-live="polite">
+          <div>
+            <span class="timer" id="timer">00:00</span>
+            <small>request open</small>
+          </div>
+          <p id="status">Ready. Notice that no progress is available while you wait.</p>
+        </div>
+      </section>
+
+      <section class="next-step">
+        <div>
+          <p class="eyebrow">Now ask why</p>
+          <h2>Must the user keep this request open?</h2>
+          <p>
+            Your backend challenge is to return immediately, represent the
+            export as a job, and expose its progress through an API. No UI work
+            is required.
+          </p>
+        </div>
+        <ol>
+          <li><span>02</span>Create a job and return its ID</li>
+          <li><span>03</span>Read job status and progress</li>
+          <li><span>04</span>Download only when complete</li>
+        </ol>
+      </section>
+
+      <footer>
+        Continue in <code>../CHALLENGE.md</code>. Implement one backend endpoint
+        at a time; the comparison UI is already available in the solution.
+      </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+  </body>
+</html>

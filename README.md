@@ -35,3 +35,7 @@ it—not merely because it appears in a typical architecture diagram.
 
 The code in this repository favors clarity and observable behavior over
 production completeness. Each case documents its intentional limitations.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the short case-writing guidelines.

@@ -1,29 +1,37 @@
 # Async Export V1 — Starter
 
-This directory contains a minimal Flask scaffold for the
-[Async Export V1 challenge](../CHALLENGE.md).
+Start by experiencing the problem. This scaffold already implements a slow
+synchronous export so you have something meaningful to run before writing code.
 
-## Run
+## 1. Run the Baseline
 
 ```bash
 uv sync
 uv run python main.py
 ```
 
-Open <http://127.0.0.1:5000>.
+Open <http://127.0.0.1:5000>, choose five seconds, and download the report.
+Notice that the request stays open and exposes no progress until the file is
+ready.
 
-The initial endpoints deliberately return `501 Not Implemented`. Implement them
-in the order suggested by `CHALLENGE.md`.
+## 2. Ask the Design Question
 
-You are expected to add any frontend files and application modules you need.
-A possible final structure is:
+Must the user keep an HTTP request open while the server performs long-running
+work? Read [`../CHALLENGE.md`](../CHALLENGE.md) and replace that interaction with
+an asynchronous job flow, one endpoint at a time. The challenge covers backend
+code only; you do not need to modify the provided UI.
+
+## Source Map
 
 ```text
 starter/
-├── main.py
-├── async_export.py
+├── main.py              # runnable sync baseline; add three async routes here
 ├── static/
-│   ├── app.js
+│   ├── app.js           # provided sync experiment; no changes required
 │   └── styles.css
-├── templates/
-│   └── index.html
+└── templates/
+    └── index.html       # problem explanation and experiment UI
+```
+
+Keep the complete flow easy to trace. New modules are optional; introduce one
+only when it makes the behavior easier to understand.
