@@ -1,41 +1,66 @@
 # Open System Design
 
-Learn system design by implementing concrete, runnable cases.
+> Learning system design by building real things, breaking them, and improving
+> them one constraint at a time.
 
-Instead of starting with architecture diagrams alone, each case begins with a
-small working problem. You can implement the challenge yourself, compare it
-with the reference solution, and then study how the design should evolve as
-scale and reliability requirements increase.
+## Hey there 👋
 
-## Cases
+I am a mid-level software developer who wants to build applications that can
+genuinely help someone.
 
-| Case | Concepts | Status |
-|---|---|---|
-| [Async Export V1](cases/async-export/) | Long-running requests, job APIs, polling, progress, file download | Available |
+I have been working in software for around five years. Along the way, I have
+worked on deep learning projects such as computer vision, built web backends
+with Flask, created frontends with Vue.js, and today I mainly work with Elixir.
+It has been a fun and sometimes chaotic journey across very different parts of
+software development.
 
-See [CASES.md](CASES.md) for the learning roadmap and future case backlog.
+With the rapid growth of AI, I want to use it to build more meaningful
+applications and move ideas into reality faster. At the same time, when AI
+writes everything for me through pure "vibe coding", the result does not really
+feel like my code. I still want to understand the decisions, make the mistakes,
+and feel that I actually built the system.
 
-## How to use this repository
+That feeling is why this repository exists.
 
-1. Open a case and read its `README.md`.
-2. Work through `CHALLENGE.md` without reading the solution first.
-3. Run and test your implementation.
-4. Compare your decisions with the reference solution.
-5. Read the design note and identify what the next version must improve.
+I am using it to learn Python again and study system design in the most
+hands-on way I know: implement a small system, observe its limitations, and
+then evolve it into the next version.
 
-Each version focuses on a limited set of ideas. Early versions may intentionally
-use in-memory state or simulated delays so the core interaction remains easy to
-understand. Later versions can introduce databases, workers, retries, locking,
-checkpoints, and object storage.
+The code inside each solution is written by me. It may not always be clever or
+perfect, so if you find something silly, please be kind—I am learning in public
+here ^^. For the demo UI and visual polish, I am happy to use AI to move faster
+because the main goal is to understand the backend flow and system design
+trade-offs.
 
-## Learning philosophy
+## What I am trying to learn
 
-A system design component should be added because a concrete limitation requires
-it—not merely because it appears in a typical architecture diagram.
+- How to turn system design ideas into small, runnable programs.
+- Why a component is needed before adding it to an architecture.
+- How requests, queues, workers, databases, and failure states behave in code.
+- How to use AI as a helpful collaborator without giving up understanding and
+  ownership.
+- How to explain what I learn clearly enough that someone else can follow it.
 
-The code in this repository favors clarity and observable behavior over
-production completeness. Each case documents its intentional limitations.
+This is not a collection of production-ready architectures. It is a growing
+workbench for experiments, mistakes, explanations, and better second versions.
 
-## Contributing
+## Start exploring
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the short case-writing guidelines.
+The detailed project documentation lives in the docs directory so this README
+can stay personal and welcoming.
+
+| Topic                       | Document                                           |
+| --------------------------- | -------------------------------------------------- |
+| Runnable cases              | [Available cases](docs/available-cases.md)         |
+| Current learning series     | [Async Export series](docs/async-export-series.md) |
+| Installation and commands   | [Getting started](docs/getting-started.md)         |
+| How to study with this repo | [Learning approach](docs/learning-approach.md)     |
+| Folder conventions          | [Repository guide](docs/repository-guide.md)       |
+| Planned and future cases    | [Case roadmap](CASES.md)                           |
+| How to contribute           | [Contributing](CONTRIBUTING.md)                    |
+
+If this repository helps you or you simply like the idea, please consider
+giving it a star. And if there is a system design case you think I should learn
+and build next, open an issue and tell me—I would genuinely appreciate it.
+
+Peace ^^

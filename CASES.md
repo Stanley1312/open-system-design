@@ -11,17 +11,17 @@ details will be researched when each case is started.
 
 ## Cases
 
-| Case | Main concepts | Difficulty | Status |
-|---|---|---:|---|
-| [Async Export V1](cases/async-export/) | Blocking vs async APIs, polling, progress | Beginner | Available |
-| Async Export V2 | PostgreSQL jobs, real workers, locking | Intermediate | Planned |
-| Async Export V3 | Retry, heartbeat, reaper, checkpoint | Intermediate | Planned |
-| Multipart File Upload | Chunking, parallel upload, resume, checksum | Intermediate | Backlog |
-| Bulk Data Import | Streaming, batch writes, partial failure | Intermediate | Backlog |
-| Webhook Delivery | At-least-once delivery, retry, idempotency, HMAC | Intermediate | Backlog |
-| Notification Service | Multiple providers, scheduling, rate limits | Intermediate | Backlog |
-| Media Processing Pipeline | Workflow orchestration, fan-out/fan-in | Advanced | Backlog |
-| Order Processing Saga | Eventual consistency, compensation, outbox | Advanced | Backlog |
+| Case                                      | Main concepts                                    |   Difficulty | Status    |
+| ----------------------------------------- | ------------------------------------------------ | -----------: | --------- |
+| [Async Export V1](cases/async-export/v1/) | Blocking vs async APIs, polling, progress        |     Beginner | Available |
+| [Async Export V2](cases/async-export/v2/) | PostgreSQL jobs, real workers, locking           | Intermediate | Available |
+| Async Export V3                           | Retry, heartbeat, reaper, checkpoint             | Intermediate | Planned   |
+| Multipart File Upload                     | Chunking, parallel upload, resume, checksum      | Intermediate | Backlog   |
+| Bulk Data Import                          | Streaming, batch writes, partial failure         | Intermediate | Backlog   |
+| Webhook Delivery                          | At-least-once delivery, retry, idempotency, HMAC | Intermediate | Backlog   |
+| Notification Service                      | Multiple providers, scheduling, rate limits      | Intermediate | Backlog   |
+| Media Processing Pipeline                 | Workflow orchestration, fan-out/fan-in           |     Advanced | Backlog   |
+| Order Processing Saga                     | Eventual consistency, compensation, outbox       |     Advanced | Backlog   |
 
 ## Suggested order
 
