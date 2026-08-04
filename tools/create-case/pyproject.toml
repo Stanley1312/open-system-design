@@ -1,0 +1,23 @@
+[project]
+name = "open-system-design-case-creator"
+version = "0.1.0"
+description = "Interactive case scaffolder for the Open System Design repository"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+create-case = "case_creator.cli:main"
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = ["pytest>=8.4.2"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

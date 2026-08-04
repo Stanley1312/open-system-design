@@ -45,3 +45,13 @@ tasks:
     desc: Follow logs from the V2 interactive demo
     cmds:
       - docker compose -f cases/async-export/v2/demo/compose.yml logs --follow
+
+  create-case:
+    desc: Interactively scaffold a new case version
+    cmds:
+      - uv run --project tools/create-case create-case --repo . {{.CLI_ARGS}}
+
+  create-case:install:
+    desc: Install the create-case command in editable mode
+    cmds:
+      - uv tool install --editable ./tools/create-case
