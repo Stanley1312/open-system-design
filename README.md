@@ -5,8 +5,9 @@
 
 ## Hey there 👋
 
-I am a mid-level software developer who wants to build applications that can
-genuinely help someone.
+I am a mid-level software developer who wants to build AI applications that can
+make everyday life a little easier. I have a lot of ideas, and hopefully I can
+bring them all to life here :v
 
 I have been working in software for around five years. Along the way, I have
 worked on deep learning projects such as computer vision, built web backends
