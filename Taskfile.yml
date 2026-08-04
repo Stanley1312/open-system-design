@@ -1,0 +1,47 @@
+version: "3"
+
+tasks:
+  format:
+    desc: Format all Python and Prettier-supported files
+    deps:
+      - format:python
+      - format:prettier
+
+  format:python:
+    desc: Format Python files with Ruff
+    cmds:
+      - uvx ruff format .
+
+  format:prettier:
+    desc: Format supported files with Prettier
+    cmds:
+      - npx --yes prettier@3 --write . --ignore-unknown
+
+  v1:solution:
+    desc: Run the V1 reference solution
+    dir: cases/async-export/v1/solution
+    cmds:
+      - uv sync
+      - uv run python main.py
+
+  v2:solution:
+    desc: Run the owner V2 solution
+    dir: cases/async-export/v2/solution
+    cmds:
+      - uv sync
+      - uv run python main.py
+
+  v2:demo:
+    desc: Start the V2 database and interactive dashboard
+    cmds:
+      - ./cases/async-export/v2/run_demo.sh
+
+  v2:demo:down:
+    desc: Stop the V2 interactive demo
+    cmds:
+      - docker compose -f cases/async-export/v2/demo/compose.yml down
+
+  v2:demo:logs:
+    desc: Follow logs from the V2 interactive demo
+    cmds:
+      - docker compose -f cases/async-export/v2/demo/compose.yml logs --follow
