@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Async Export Worker Lab</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">System design lab · V2</p>
+          <h1>Watch the queue.<br /><span>See every worker.</span></h1>
+        </div>
+        <p class="intro">
+          Create PostgreSQL-backed export jobs, change process concurrency, and
+          follow each row from pending to downloadable result.
+        </p>
+      </header>
+
+      <section class="topology panel" aria-label="System topology">
+        <div class="topology-node">
+          <span class="node-dot is-online"></span><small>Client</small
+          ><strong>Browser</strong>
+        </div>
+        <i></i>
+        <div class="topology-node">
+          <span class="node-dot is-online" id="api-dot"></span><small>API</small
+          ><strong id="api-state">Online</strong>
+        </div>
+        <i></i>
+        <div class="topology-node">
+          <span class="node-dot is-online" id="database-dot"></span
+          ><small>PostgreSQL</small
+          ><strong id="database-state">Connecting</strong>
+        </div>
+        <i></i>
+        <div class="topology-node">
+          <span class="node-dot is-online"></span><small>Worker pool</small
+          ><strong id="pool-summary">—</strong>
+        </div>
+        <i></i>
+        <div class="topology-node">
+          <span class="node-dot is-online"></span><small>Result</small
+          ><strong id="completed-summary">0 files</strong>
+        </div>
+      </section>
+
+      <section class="control-grid">
+        <article class="panel create-panel">
+          <div class="section-heading">
+            <div>
+              <p class="section-label">Producer</p>
+              <h2>Create export jobs</h2>
+            </div>
+            <span class="method">POST /async-export</span>
+          </div>
+          <p class="description">
+            Submit more jobs than workers to make the pending queue visible.
+          </p>
+          <form id="job-form">
+            <label
+              ><span>Duration per job</span
+              ><span class="input-with-unit"
+                ><input
+                  id="duration-input"
+                  type="number"
+                  min="1"
+                  max="120"
+                  step="1"
+                  value="{{ default_duration }}"
+                /><small>sec</small></span
+              ></label
+            >
+            <label
+              ><span>Number of jobs</span
+              ><span class="input-with-unit"
+                ><input
+                  id="job-count-input"
+                  type="number"
+                  min="1"
+                  max="20"
+                  step="1"
+                  value="3"
+                /><small>jobs</small></span
+              ></label
+            >
+            <button class="primary-button" type="submit" id="create-button">
+              <span>Create jobs</span><span>→</span>
+            </button>
+          </form>
+          <p class="form-note" id="create-note" aria-live="polite">
+            Jobs enter PostgreSQL with pending status.
+          </p>
+        </article>
+
+        <article class="panel worker-control-panel">
+          <div class="section-heading">
+            <div>
+              <p class="section-label">Consumers</p>
+              <h2>Worker pool</h2>
+            </div>
+            <span class="method">PUT /demo/workers</span>
+          </div>
+          <p class="description">
+            Scale processes up or down. Busy workers drain before stopping.
+          </p>
+          <form id="worker-form">
+            <button
+              type="button"
+              class="step-button"
+              id="worker-minus"
+              aria-label="Remove one worker"
+            >
+              −
+            </button>
+            <input
+              id="worker-count-input"
+              type="number"
+              min="1"
+              value="2"
+              aria-label="Worker count"
+            />
+            <button
+              type="button"
+              class="step-button"
+              id="worker-plus"
+              aria-label="Add one worker"
+            >
+              +
+            </button>
+            <button class="secondary-button" type="submit">
+              Apply pool size
+            </button>
+          </form>
+          <div class="capacity">
+            <span>Configured <strong id="configured-workers">—</strong></span
+            ><span>CPU limit <strong id="cpu-limit">—</strong></span>
+          </div>
+          <p class="form-note" id="worker-note" aria-live="polite">
+            Reading available CPU cores…
+          </p>
+        </article>
+      </section>
+
+      <section class="metrics" aria-label="Job counts">
+        <article>
+          <small>Pending</small><strong id="pending-count">0</strong>
+        </article>
+        <article>
+          <small>Running</small><strong id="running-count">0</strong>
+        </article>
+        <article>
+          <small>Completed</small><strong id="completed-count">0</strong>
+        </article>
+        <article>
+          <small>Errors</small><strong id="error-count">0</strong>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <section class="panel workers-panel">
+          <div class="section-heading compact">
+            <div>
+              <p class="section-label">Live processes</p>
+              <h2>Workers</h2>
+            </div>
+            <span class="poll-indicator"><i></i> Live · 1s</span>
+          </div>
+          <div class="worker-grid" id="worker-grid">
+            <p class="empty-state">Waiting for worker state…</p>
+          </div>
+        </section>
+        <aside class="panel timeline-panel">
+          <div class="section-heading compact">
+            <div>
+              <p class="section-label">Browser observation</p>
+              <h2>Event timeline</h2>
+            </div>
+          </div>
+          <ol class="timeline" id="timeline">
+            <li><time>—</time><span>Connecting to the dashboard…</span></li>
+          </ol>
+        </aside>
+      </section>
+
+      <section class="panel jobs-panel">
+        <div class="section-heading compact jobs-heading">
+          <div>
+            <p class="section-label">PostgreSQL queue</p>
+            <h2>Export jobs</h2>
+          </div>
+          <div class="filters" id="job-filters" aria-label="Filter jobs">
+            <button class="is-active" data-status="all">All</button
+            ><button data-status="pending">Pending</button
+            ><button data-status="running">Running</button
+            ><button data-status="completed">Completed</button
+            ><button data-status="error">Error</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Job</th>
+                <th>Status</th>
+                <th>Worker</th>
+                <th>Duration</th>
+                <th>Progress</th>
+                <th>Created</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="jobs-body">
+              <tr>
+                <td colspan="7" class="empty-state">No jobs yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer>
+        <span>V2 · PostgreSQL queue · Multiprocessing</span
+        ><span>FOR UPDATE SKIP LOCKED · Polling dashboard</span>
+      </footer>
+    </main>
+    <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+name: async-export-v2-demo
+
+services:
+  database:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: async_export
+      POSTGRES_USER: async_export
+      POSTGRES_PASSWORD: async_export
+    tmpfs:
+      - /var/lib/postgresql/data
+    volumes:
+      - ./demo_init.sql:/docker-entrypoint-initdb.d/001-demo-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U async_export -d async_export"]
+      interval: 1s
+      timeout: 3s
+      retries: 20
+
+  app:
+    build:
+      context: .
+    init: true
+    environment:
+      DATABASE_URL: postgresql://async_export:async_export@database:5432/async_export
+      DEFAULT_WORKERS: "2"
+      PYTHONUNBUFFERED: "1"
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
