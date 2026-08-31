@@ -1,0 +1,12 @@
+[project]
+name = "asyc-export-v3-solution"
+version = "0.1.0"
+description = "Solution project for asyc-export V3"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "flask",
+    "loadenv",
+    "psycopg[binary]",
+    "python-dotenv>=1.2.2",
+]

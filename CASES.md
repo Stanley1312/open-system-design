@@ -15,7 +15,7 @@ details will be researched when each case is started.
 | ----------------------------------------- | ------------------------------------------------ | -----------: | --------- |
 | [Async Export V1](cases/async-export/v1/) | Blocking vs async APIs, polling, progress        |     Beginner | Available |
 | [Async Export V2](cases/async-export/v2/) | PostgreSQL jobs, real workers, locking           | Intermediate | Available |
-| Async Export V3                           | Retry, heartbeat, reaper, checkpoint             | Intermediate | Planned   |
+| [Async Export V3](cases/async-export/v3/) | Retry, heartbeat, reaper, checkpoint             | Intermediate | Planned   |
 | Multipart File Upload                     | Chunking, parallel upload, resume, checksum      | Intermediate | Backlog   |
 | Bulk Data Import                          | Streaming, batch writes, partial failure         | Intermediate | Backlog   |
 | Webhook Delivery                          | At-least-once delivery, retry, idempotency, HMAC | Intermediate | Backlog   |

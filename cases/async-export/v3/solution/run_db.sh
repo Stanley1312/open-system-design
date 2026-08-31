@@ -1,0 +1,1 @@
+docker build -t asyn-export-db . && docker run -d --env-file .env -p 5432:5432 --name async-export asyn-export-db
