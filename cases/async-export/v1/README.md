@@ -9,18 +9,20 @@ simulated with elapsed time so the HTTP interaction is easy to observe.
 - [Try the challenge](CHALLENGE.md), then work inside [`starter/`](starter/).
 - Compare your implementation with the reference code in
   [`solution/`](solution/).
-- [Read the design note](docs/async_large_file_export_api_design_en.md) for the
-  production-oriented architecture behind this simplified case.
+- [Read the V1 design note](docs/in-memory-async-export.md) for the decisions
+  and intentional shortcuts in this version.
+- [Read the case-wide architecture note](../docs/async_large_file_export_api_design_en.md)
+  for the production-oriented system that later versions build toward.
 
 ## Repository layout
 
 ```text
-async-export/
+v1/
 ├── README.md       # Case overview
 ├── CHALLENGE.md    # Requirements and hints
 ├── starter/        # Minimal runnable scaffold
 ├── solution/       # Reference implementation
-└── docs/           # Design notes
+└── docs/           # V1-specific design notes
 ```
 
 ## Run the reference solution

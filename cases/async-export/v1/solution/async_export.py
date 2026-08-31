@@ -33,9 +33,7 @@ def index():
 @app.get("/sync-export")
 def sync_export():
     """Simulate a slow DB query while the HTTP request remains open."""
-    raw_duration = request.args.get(
-        "time", default=str(SYNC_EXPORT_DURATION_SECONDS)
-    )
+    raw_duration = request.args.get("time", default=str(SYNC_EXPORT_DURATION_SECONDS))
     try:
         duration = int(raw_duration)
     except (TypeError, ValueError):
@@ -62,9 +60,7 @@ def sync_export():
 def create_async_export_job():
     """Create a simulated background job and return immediately."""
     payload = request.get_json(silent=True) or {}
-    duration = payload.get(
-        "duration_seconds", DEFAULT_ASYNC_EXPORT_DURATION_SECONDS
-    )
+    duration = payload.get("duration_seconds", DEFAULT_ASYNC_EXPORT_DURATION_SECONDS)
 
     if (
         isinstance(duration, bool)

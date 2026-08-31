@@ -1,16 +1,19 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Async Export — Start Here</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
   </head>
   <body>
     <main class="page-shell">
       <header class="hero">
         <p class="eyebrow">System Design Lab · Async Export V1</p>
-        <h1>Start with the problem,<br>not the architecture.</h1>
+        <h1>Start with the problem,<br />not the architecture.</h1>
         <p class="intro">
           Large exports take time. First, experience what happens when all of
           that work is performed inside one HTTP request.
@@ -32,7 +35,8 @@
             until the server finishes before it receives the file.
           </p>
           <div class="flow" aria-label="Client waits for the API">
-            <span>Browser</span><i></i><span>API does all work</span><i></i><span>File</span>
+            <span>Browser</span><i></i><span>API does all work</span><i></i
+            ><span>File</span>
           </div>
         </div>
 
@@ -50,7 +54,7 @@
                 min="1"
                 max="120"
                 value="{{ default_duration }}"
-              >
+              />
               <span>seconds</span>
             </div>
             <button type="submit">Download report <span>↓</span></button>
@@ -62,7 +66,9 @@
             <span class="timer" id="timer">00:00</span>
             <small>request open</small>
           </div>
-          <p id="status">Ready. Notice that no progress is available while you wait.</p>
+          <p id="status">
+            Ready. Notice that no progress is available while you wait.
+          </p>
         </div>
       </section>
 

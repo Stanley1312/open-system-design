@@ -2,15 +2,21 @@ version: "3"
 
 tasks:
   format:
-    desc: Format all Python and Prettier-supported files
+    desc: Format all Python, SQL, and Prettier-supported files
     deps:
       - format:python
+      - format:sql
       - format:prettier
 
   format:python:
     desc: Format Python files with Ruff
     cmds:
       - uvx ruff format .
+
+  format:sql:
+    desc: Format PostgreSQL files with SQLFluff
+    cmds:
+      - uvx sqlfluff fix --dialect postgres .
 
   format:prettier:
     desc: Format supported files with Prettier

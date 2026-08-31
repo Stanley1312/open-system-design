@@ -1,19 +1,25 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sync vs Async Export</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
   </head>
   <body>
     <main class="page-shell">
       <header class="hero">
         <p class="eyebrow">System design lab · 01</p>
-        <h1>Large file export,<br><span>two different experiences.</span></h1>
+        <h1>Large file export,<br /><span>two different experiences.</span></h1>
         <p class="intro">
           Compare a request that stays open until the work is done with a job
           that can be checked independently.
@@ -39,7 +45,10 @@
             <span>Client</span><i></i><span>API + DB</span>
           </div>
 
-          <label class="duration-control sync-duration-control" for="sync-duration">
+          <label
+            class="duration-control sync-duration-control"
+            for="sync-duration"
+          >
             <span>
               Simulation time
               <small>Sent as a query parameter with the request</small>
@@ -52,7 +61,7 @@
                 max="120"
                 step="1"
                 value="{{ sync_duration }}"
-              >
+              />
               <span>sec</span>
             </span>
           </label>
@@ -67,7 +76,9 @@
               <span class="timer-label">request time</span>
             </div>
           </div>
-          <p class="status-message" id="sync-status">Choose a duration, then download</p>
+          <p class="status-message" id="sync-status">
+            Choose a duration, then download
+          </p>
         </article>
 
         <article class="export-card async-card">
@@ -101,7 +112,7 @@
                 max="120"
                 step="1"
                 value="{{ async_duration }}"
-              >
+              />
               <span>sec</span>
             </span>
           </label>
@@ -129,7 +140,9 @@
             </div>
             <div class="polling-note">
               <span class="pulse-dot"></span>
-              <span id="polling-note">Choose a duration, then start the job</span>
+              <span id="polling-note"
+                >Choose a duration, then start the job</span
+              >
             </div>
           </div>
         </article>

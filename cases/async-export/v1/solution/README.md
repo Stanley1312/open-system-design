@@ -28,5 +28,6 @@ This is intentionally a V1 learning implementation:
 - Generated files are kept in memory.
 - Authentication, ownership, retries, and expiration are not implemented.
 
-Read the [case design note](../docs/async_large_file_export_api_design_en.md) to
-understand how a production-oriented version addresses these limitations.
+Read the [V1 design note](../docs/in-memory-async-export.md) for why these
+shortcuts are intentional. The [case-wide architecture note](../../docs/async_large_file_export_api_design_en.md)
+explains how later versions address these limitations.

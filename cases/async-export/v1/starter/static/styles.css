@@ -18,7 +18,11 @@ body {
   color: var(--ink);
   background:
     radial-gradient(circle at 10% 5%, rgba(217, 98, 56, 0.1), transparent 28%),
-    radial-gradient(circle at 90% 85%, rgba(40, 108, 84, 0.12), transparent 30%),
+    radial-gradient(
+      circle at 90% 85%,
+      rgba(40, 108, 84, 0.12),
+      transparent 30%
+    ),
     var(--paper);
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
 }
@@ -176,7 +180,9 @@ input {
   outline: 0;
   background: transparent;
   color: var(--ink);
-  font: 700 17px ui-monospace, monospace;
+  font:
+    700 17px ui-monospace,
+    monospace;
 }
 
 button {
@@ -212,7 +218,9 @@ button:disabled {
 }
 
 .timer {
-  font: 700 24px ui-monospace, monospace;
+  font:
+    700 24px ui-monospace,
+    monospace;
 }
 
 .observation p {

@@ -37,7 +37,8 @@ form.addEventListener("submit", async (event) => {
 
   submitButton.disabled = true;
   durationInput.disabled = true;
-  status.textContent = "Waiting… the server has not returned a file or progress yet.";
+  status.textContent =
+    "Waiting… the server has not returned a file or progress yet.";
   timer.textContent = "00:00";
 
   const startedAt = Date.now();

@@ -95,5 +95,7 @@ workers, retries, and object storage.
 - Invalid input and unknown jobs return the expected status codes.
 - Download is rejected until the job is complete.
 
-When these checks pass, compare your code with `solution/` and read the design
-note in `docs/` to see what must change in a production system.
+When these checks pass, compare your code with `solution/`, then read the
+[V1 design note](docs/in-memory-async-export.md) to review this version's
+trade-offs. The [case-wide architecture note](../docs/async_large_file_export_api_design_en.md)
+shows what must change in a production system.

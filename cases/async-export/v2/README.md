@@ -13,13 +13,13 @@ queue consumed by multiple Python worker processes.
 
 ## What changes from V1?
 
-| V1 | V2 |
-| --- | --- |
-| In-memory job dictionary | PostgreSQL jobs table |
-| Simulated background work | Separate worker processes |
-| No competing consumers | Multiple workers claim jobs concurrently |
-| Process-local state | Persisted job status and result |
-| No database locking | FOR UPDATE SKIP LOCKED |
+| V1                        | V2                                       |
+| ------------------------- | ---------------------------------------- |
+| In-memory job dictionary  | PostgreSQL jobs table                    |
+| Simulated background work | Separate worker processes                |
+| No competing consumers    | Multiple workers claim jobs concurrently |
+| Process-local state       | Persisted job status and result          |
+| No database locking       | FOR UPDATE SKIP LOCKED                   |
 
 ## Repository layout
 

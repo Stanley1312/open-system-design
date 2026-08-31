@@ -102,8 +102,7 @@ async function waitForJob(jobId, pollIntervalMs) {
       return;
     }
 
-    pollingNote.textContent =
-      `Next status check in ${pollIntervalMs / 1000} seconds`;
+    pollingNote.textContent = `Next status check in ${pollIntervalMs / 1000} seconds`;
     await new Promise((resolve) => window.setTimeout(resolve, pollIntervalMs));
   }
 }
@@ -144,8 +143,7 @@ asyncButton.addEventListener("click", async () => {
     }
 
     const job = await createResponse.json();
-    pollingNote.textContent =
-      `Job ${job.job_id.slice(0, 8)} · polling every ${pollIntervalMs / 1000}s`;
+    pollingNote.textContent = `Job ${job.job_id.slice(0, 8)} · polling every ${pollIntervalMs / 1000}s`;
     await waitForJob(job.job_id, pollIntervalMs);
 
     const downloadResponse = await fetch(
